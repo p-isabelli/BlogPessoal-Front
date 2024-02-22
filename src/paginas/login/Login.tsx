@@ -1,42 +1,24 @@
 import React, { useContext } from 'react';
 
-import { UserContext } from '../../contexts/UserContext'
+import { UserContext } from '../../contexts/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Login() {
+function Home() {
   const { nome, setNome } = useContext(UserContext);
-  let navigate = useNavigate()
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    navigate('/home')
-  }
 
   return (
     <div className='flex justify-center items-center'>
-      <form  onSubmit={handleSubmit}>
-        <h2 className="text-slate-900 text-5xl  m-4">Logar</h2>
-        <div className="flex flex-col w-full">
-          <label htmlFor="usuario">Nome</label>
-          <input
-            type="text"
-            id="usuario"
-            name="usuario"
-            placeholder="Usuario"
-            className="border-2 border-slate-700 rounded p-2"
-            value={nome}
-            onChange={(event) => setNome(event.target.value)}
-          />
-        </div>
-        <button type='submit' className="my-4 rounded bg-indigo-400
+      <div>
+        <h2 className="text-slate-900 text-5xl  my-4">Logar</h2>
+        <h2 className="text-slate-900 text-4xl ">Ola user : {nome}</h2>
+        <Link to="/login" className="my-4 rounded bg-indigo-400
          hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center">
-          <span>Entrar</span>
-        </button>
-
-      </form>
+          Voltar 
+        </Link>
+      </div>
 
     </div>
   );
 }
 
-export default Login;
+export default Home;
