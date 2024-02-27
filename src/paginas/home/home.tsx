@@ -1,5 +1,3 @@
-
-import homeLogo from '../../assets/home.png'
 import './Home.css';
 import ListaPostagens from '../../components/postagens/listaPostagem/ListaPostagens';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
@@ -9,25 +7,23 @@ import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostage
 function Home() {
     return (
         <>
-        <div className="bg-indigo-900 flex justify-center">
-          <div className='container grid grid-cols-2 text-white'>
+        <div className="bg-gray-900 flex justify-center flex-grow w-full fundo font-font2">
+          <div className='container grid grid-cols-1 text-white'>
             <div className="flex flex-col gap-4 items-center justify-center py-4">
-              <h2 className='text-5xl font-bold'>Seja bem vinde!</h2>
-              <p className='text-xl'>Expresse aqui seus pensamentos e opniões</p>
+              <h2 className='text-5xl font-semibold font-font5'>Entre e compartilhe!</h2>
+              <p className='text-xl italic'>Expresse aqui seus pensamentos e opniões</p>
   
-              <div className="flex justify-around gap-4">
+              <div className="flex justify-around gap-4 font-font5">
               <ModalPostagem />
-              <button className='rounded bg-white text-blue-800 py-2 px-4'>Ver postagens</button>
+              <button className='border border-gray-500 rounded bg-gray-800 text-white py-2 px-4'>Ver postagens</button>
             </div>
-            </div>
-  
-            <div className="flex justify-center ">
-              <img src={homeLogo} alt="" className='w-2/3' />
-      
             </div>
           </div>
         </div>
-        <ListaPostagens />
+        <div className="flex flex-col flex-grow w-full items-center">
+          <h2 className="text-3xl py-6 font-font5">Últimas postagens</h2>
+          <ListaPostagens />
+        </div>
       </>
     );
 }
