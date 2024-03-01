@@ -1,30 +1,41 @@
-import { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../contexts/AuthContext'
-import loginLogo from '../../assets/fundo3.jpg'
-import { toastAlerta } from '../../util/toastAlerta'
-function Perfil() {
-  let navigate = useNavigate()
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext, useEffect, useState } from "react";
+import { PencilSimple } from "@phosphor-icons/react";
+import { toastAlerta } from "../../util/toastAlerta";
 
-  const { usuario } = useContext(AuthContext)
+function Perfil(){
+  let navigate = useNavigate();
+
+  const { usuario, handleLogout} = useContext(AuthContext);
+  const [edit, setEdit] = useState<boolean>(false);
+  const token = usuario.token;
 
   useEffect(() => {
-    if (usuario.token === "") {
-      toastAlerta('Dados inconsistentes. Verifique as informações de cadastro.', 'erro')
-      navigate("/login")
+    if (token === '') {
+      toastAlerta('Você precisa estar logado.', 'info');
+      navigate('/login');
     }
-  }, [usuario.token])
+  }, [token]);
+
+  function handleEdit(){
+    if(edit) setEdit(false);
+    else setEdit(true);
+  }
 
   return (
-    <div className='container mx-auto mt-4 rounded-2xl overflow-hidden'>
-      <img className='w-full h-72 object-cover border-b-8 border-white' src={loginLogo} alt="Capa do Perfil" />
-      <img src={usuario.foto} alt={`Foto de perfil de ${usuario.nome}`} className='rounded-full w-56 mx-auto mt-[-8rem] border-8 border-white relative z-10' />
-      <div className="relative mt-[-6rem] h-72 flex flex-col bg-sky-500 text-gray-900 text-2xl items-center justify-center">
-        <p>Nome: {usuario.nome} </p>
-        <p>Email: {usuario.usuario}</p>
-      </div>
+    <div className="w-full flex items-center p-4 justify-center">
+        <div className="bg-gray-100 rounded border-gray-800 border-double border-2 m-4 p-4">
+          <h3 className="text-4xl text-bold text-center">{usuario.nome}</h3>
+
+          <div className="border-2 m-4"></div>
+
+          <img src={usuario.foto} alt={`Foto ${usuario.nome}`} width={156} height={156}className='rounded-full mx-auto border-2 border-gray-800 m-4'/>
+
+          <h5 className="text-xl text-center m-4">E-mail: {usuario.usuario}</h5>
+        </div>
     </div>
   )
 }
 
-export default Perfil
+export default Perfil;
