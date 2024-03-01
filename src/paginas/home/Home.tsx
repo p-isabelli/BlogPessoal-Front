@@ -1,4 +1,4 @@
-import './Home.css';
+import './home.css';
 import ListaPostagens from '../../components/postagens/listaPostagem/ListaPostagens';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
 
